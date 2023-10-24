@@ -3,6 +3,7 @@
 
 #include "CodingActor.h"
 
+
 // Sets default values
 ACodingActor::ACodingActor()
 {
@@ -16,37 +17,54 @@ void ACodingActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//UE_LOG(LogTemp, Warning, TEXT("안녕 월드야!"));
-	// number
-	//UE_LOG(LogTemp, Warning, TEXT("%d"), number);
-	//UE_LOG(LogTemp, Warning, TEXT("%.3f"), fNumber);
+	//	배열에 10개 항목을 넣는데 1이상 2이하값을 랜덤으로 누적해서 넣기
+	//float sum = 0;
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	sum += FMath::RandRange(1.0f, 2.0f);
+	//	notes.Add(sum);
+	//	//UE_LOG(LogTemp, Warning, TEXT("%.2f"), sum);
+	//}
 
-	//UE_LOG(LogTemp, Warning, TEXT("bool is false : %d"), false);
+	/*int result = MyAdd(10, 20);
+	UE_LOG(LogTemp, Warning, TEXT("%d"), result);*/
 
-	//UE_LOG(LogTemp, Warning, TEXT("bool is true : %d"), true);
-	//UE_LOG(LogTemp, Warning, TEXT("%s"), *myName);
-	if (myName.Equals(TEXT("KTJ")))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("호주에 별장 사고싶다."));
-	}
-	else if (myName.Equals(TEXT("LSK")))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("벌금내고 싶다."));
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("맥북 사고싶다"));
-	}
 
-	// 조건문
-	// 만약 myName이 KTJ이라면 호주에 별장 사고싶다.
-	// 그렇지않고 myName LSK이라면 벌금내고싶다.
-	// 이도저도 아니라면 맥북사고싶다.
 }
+
+
 
 // Called every frame
 void ACodingActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	//// 1. tick에서 시간이 흐르다가 
+	//currentTime += DeltaTime;
+	//// 2. noteIndex가 배열크기보다 작고 배열의 현재 인덱스 항목의 시간만큼 시간이 흘렀다면
+	//if (noteIndex < notes.Num() && currentTime >= notes[noteIndex])
+	//{
+	//	// 3. 배열의 인덱스와 값을 출력하고 인덱스값을 1증가
+	//	UE_LOG(LogTemp, Warning, TEXT("index : %d, time : %.2f"), noteIndex, notes[noteIndex]);
+	//
+	//	noteIndex++;
+	//}
 }
+
+// 함수의 정의/구현
+int ACodingActor::MyAdd(int a, int b)
+{
+	return a + b;
+}
+
+int ACodingActor::MyAdd2(int a, int b)
+{
+	return a + b;
+}
+
+int ACodingActor::MyAdd4_Implementation(int a, int b)
+{
+	return a + b;
+}
+
 

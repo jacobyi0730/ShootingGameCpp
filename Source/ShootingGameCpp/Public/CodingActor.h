@@ -38,4 +38,23 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = myVar)
 	FString myName = TEXT("KTJ"); // 문자열
+
+	// 노트 배열 만들고 BeginPlay에서 값을 채우고 Tick에서 시간의 진행에따라 배열 값을 출력하고싶다.
+	TArray<float> notes;
+	int noteIndex;
+	float currentTime;
+
+	UFUNCTION(BlueprintCallable)
+	int MyAdd(int a, int b);	// 함수의 선언
+
+	UFUNCTION(BlueprintPure)
+	int MyAdd2(int a, int b);	// 함수의 선언
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	int MyAdd3(int a, int b);	// 함수의 선언
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	int MyAdd4(int a, int b);	// 함수의 선언
+
+
 };
