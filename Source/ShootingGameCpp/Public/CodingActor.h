@@ -55,6 +55,4 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	int MyAdd4(int a, int b);	// 함수의 선언
-
-
 };

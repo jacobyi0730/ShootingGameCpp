@@ -3,7 +3,6 @@
 
 #include "CodingActor.h"
 
-
 // Sets default values
 ACodingActor::ACodingActor()
 {
@@ -28,6 +27,15 @@ void ACodingActor::BeginPlay()
 
 	/*int result = MyAdd(10, 20);
 	UE_LOG(LogTemp, Warning, TEXT("%d"), result);*/
+
+	//TArray<AActor*> ar;
+	//ar.Add(nullptr);
+	//ar.Add(nullptr);
+	//ar.Add(nullptr);
+	//
+	//for (auto temp : ar)
+	//{
+	//}
 
 
 }
