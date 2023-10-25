@@ -31,7 +31,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* cube;
 
 	UPROPERTY(EditAnywhere)
@@ -39,4 +39,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float speed = 500.f;
+
+	float h, v;
+	void AxisHorizontal(float value);
+	void AxisVertical(float value);
 };
