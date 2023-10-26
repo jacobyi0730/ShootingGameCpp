@@ -42,6 +42,5 @@ void ATailActor::Tick(float DeltaTime)
 	dir.Normalize();
 	// 그 방향으로 이동하고싶다.
 	SetActorLocation(GetActorLocation() + dir * speed * DeltaTime);
-
 }
 

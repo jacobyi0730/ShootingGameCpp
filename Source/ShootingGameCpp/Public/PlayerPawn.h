@@ -37,10 +37,30 @@ public:
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* box; // 포인터 변수 선언시 class의 이미는 전방선언이다. 
 
+	UPROPERTY(EditAnywhere)
+	class UArrowComponent* arrow;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class ABulletActor> bulletFactory;
+
+	UPROPERTY(EditAnywhere)
+	USoundBase* fireSound;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float speed = 500.f;
 
 	float h, v;
 	void AxisHorizontal(float value);
 	void AxisVertical(float value);
+
+	// 자동 총쏘기 기능을 만들고싶다.
+	// - 기능 : 눌렀다, 뗏다, 총알을 만든다.
+	// - 속성 : 누른상태, 현재시간, 총알이 발사되는 시간(인터벌)
+	bool bAutoFire;
+	float currentTime;
+	float makeTime = 0.5f;
+	void ActionFirePressed();
+	void ActionFireReleased();
+
+	void MakeBullet();
 };
