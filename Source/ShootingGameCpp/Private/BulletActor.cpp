@@ -4,6 +4,7 @@
 #include "BulletActor.h"
 #include "Components/BoxComponent.h"
 #include "EnemyActor.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABulletActor::ABulletActor()
@@ -20,6 +21,18 @@ ABulletActor::ABulletActor()
 	// 외관의 크기과 충돌체의 크기를 설정하고싶다.
 	cube->SetRelativeScale3D(FVector(0.75f, 0.25f, 1));
 	box->SetBoxExtent(FVector(37.5f, 12.5f, 50));
+
+	// 충돌설정을 하고싶다.
+	box->SetGenerateOverlapEvents(true);
+	
+	box->SetCollisionProfileName(TEXT("Bullet"));
+
+	//box->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	//box->SetCollisionObjectType(ECC_GameTraceChannel2);
+	//box->SetCollisionResponseToAllChannels(ECR_Ignore);
+	//box->SetCollisionResponseToChannel(ECC_GameTraceChannel3, ECR_Overlap);	// Enemy
+	//box->SetCollisionResponseToChannel(ECC_GameTraceChannel4, ECR_Overlap);	// DestroyZone
+
 }
 
 // Called when the game starts or when spawned
@@ -65,5 +78,8 @@ void ABulletActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponen
 		enemy->Destroy();
 		// 나죽고 하고싶다.
 		this->Destroy();
+
+		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
+
 	}
 }

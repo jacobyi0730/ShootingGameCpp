@@ -5,6 +5,7 @@
 #include "EngineUtils.h"
 #include "PlayerPawn.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AEnemyActor::AEnemyActor()
@@ -17,6 +18,10 @@ AEnemyActor::AEnemyActor()
 
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
 	cube->SetupAttachment(RootComponent);
+
+	box->SetGenerateOverlapEvents(true);
+
+	box->SetCollisionProfileName(TEXT("Enemy"));
 }
 
 // Called when the game starts or when spawned
@@ -76,6 +81,8 @@ void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent
 		player->Destroy();
 		//  나죽고 하고싶다.
 		this->Destroy();
+
+		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
 	}
 }
 

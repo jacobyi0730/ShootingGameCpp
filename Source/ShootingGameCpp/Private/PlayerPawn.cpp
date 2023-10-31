@@ -28,6 +28,10 @@ APlayerPawn::APlayerPawn()
 	arrow->SetRelativeLocation(FVector(0, 0, 70));
 	// Rot (Pitch=90.000000,Yaw=0.000000,Roll=0.000000)
 	arrow->SetRelativeRotation(FRotator(90, 0, 0));
+
+	box->SetGenerateOverlapEvents(true);
+
+	box->SetCollisionProfileName(TEXT("Player"));
 }
 
 // Called when the game starts or when spawned

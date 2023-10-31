@@ -38,4 +38,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MyVar)
 	FVector direction;
+
+	UPROPERTY(EditAnywhere)
+	USoundBase* explosionSound;
 };

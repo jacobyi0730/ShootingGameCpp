@@ -38,4 +38,7 @@ public:
 	// 앞 방향으로 계속 이동하고싶다.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float speed = 1000;
+
+	UPROPERTY(EditAnywhere)
+	USoundBase* explosionSound;
 };
