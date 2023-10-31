@@ -51,6 +51,8 @@ void AEnemyActor::BeginPlay()
 		direction = GetActorForwardVector();
 	}
 
+	// box에게 충돌했으면 나도 알려줘라고 하고싶다.
+	box->OnComponentBeginOverlap.AddDynamic(this, &AEnemyActor::OnBoxCompBeginOverlap);
 }
 
 // Called every frame
@@ -62,5 +64,18 @@ void AEnemyActor::Tick(float DeltaTime)
 	FVector P0 = GetActorLocation();
 	FVector velocity = direction * speed;
 	SetActorLocation(P0 + velocity * DeltaTime);
+}
+
+void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	// 상대방이 Player라면
+	APlayerPawn* player = Cast<APlayerPawn>(OtherActor);
+	if (player)
+	{
+		// 너죽고
+		player->Destroy();
+		//  나죽고 하고싶다.
+		this->Destroy();
+	}
 }
 
