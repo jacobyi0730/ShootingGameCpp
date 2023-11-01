@@ -6,6 +6,7 @@
 #include "Components/ArrowComponent.h"
 #include "BulletActor.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/StaticMesh.h"
 
 APlayerPawn::APlayerPawn()
 {
@@ -18,6 +19,22 @@ APlayerPawn::APlayerPawn()
 
 	// cube 외관을 만들고싶다.
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
+
+	// 파일 로딩 시도
+	auto cubeMesh = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/Models/SpaceShip/Spaceship_ARA.Spaceship_ARA'"));
+
+	// 만약 파일 로딩 성공여부 확인해서 성공했다면
+	if (cubeMesh.Succeeded())
+	{
+		// cube에 mesh를 넣어줘야함
+		cube->SetStaticMesh(cubeMesh.Object);
+
+		//(Pitch = 0.000001, Yaw = 89.999999, Roll = 90.000000)
+		cube->SetRelativeRotation(FRotator(0, 90, 90));
+		// 3.0f
+		cube->SetRelativeScale3D(FVector(3.0f));
+	}
+
 	// 외관을 Root에 붙이고싶다.(Attach)
 	cube->SetupAttachment(box);
 

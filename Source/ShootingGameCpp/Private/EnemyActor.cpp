@@ -15,8 +15,21 @@ AEnemyActor::AEnemyActor()
 
 	box = CreateDefaultSubobject<UBoxComponent>(TEXT("box"));
 	SetRootComponent(box);
-
+	box->SetBoxExtent(FVector(50));
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
+	
+	// 파일 로딩 시도
+	auto cubeMesh = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/Models/Drone/Drone_low.Drone_low'"));
+
+	// 만약 파일 로딩 성공여부 확인해서 성공했다면
+	if (cubeMesh.Succeeded())
+	{
+		cube->SetStaticMesh(cubeMesh.Object);
+		cube->SetRelativeLocation(FVector(0, 0, -50));
+		cube->SetRelativeRotation(FRotator(0, -90, 0));
+		cube->SetRelativeScale3D(FVector(0.85f));
+	}
+
 	cube->SetupAttachment(RootComponent);
 
 	box->SetGenerateOverlapEvents(true);
@@ -83,6 +96,8 @@ void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent
 		this->Destroy();
 
 		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
+
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, GetActorLocation(), GetActorRotation());
 	}
 }
 

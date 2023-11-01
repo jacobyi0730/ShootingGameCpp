@@ -68,6 +68,11 @@ void ABulletActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	//}
 }
 
+void ABulletActor::Destroyed()
+{
+	// 총알이 실제로 파괴되기 직전에 호출되는 함수.
+}
+
 void ABulletActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	// 부딪힌 상대가 AEnemyActor라면
@@ -80,6 +85,7 @@ void ABulletActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponen
 		this->Destroy();
 
 		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, enemy->GetActorTransform());
 
 	}
 }

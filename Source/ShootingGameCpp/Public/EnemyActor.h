@@ -40,5 +40,8 @@ public:
 	FVector direction;
 
 	UPROPERTY(EditAnywhere)
-	USoundBase* explosionSound;
+	class USoundBase* explosionSound;
+
+	UPROPERTY(EditAnywhere)
+	class UParticleSystem* explosionVFX;
 };
