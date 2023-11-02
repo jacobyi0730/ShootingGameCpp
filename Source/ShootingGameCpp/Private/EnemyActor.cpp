@@ -6,6 +6,7 @@
 #include "PlayerPawn.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameOverWidget.h"
 
 // Sets default values
 AEnemyActor::AEnemyActor()
@@ -98,6 +99,19 @@ void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent
 		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
 
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, GetActorLocation(), GetActorRotation());
+
+		// 게임오버 UI를 화면에 보이게 하고싶다.
+		auto ui = CreateWidget(GetWorld(), gameOverUIFactory);
+		gameOverUI = Cast<UGameOverWidget>(ui);
+		gameOverUI->AddToViewport(99);
+
+		auto PlayerController = GetWorld()->GetFirstPlayerController();
+		// 일시정지 하고싶다.
+		PlayerController->SetPause(true);
+		// 마우스 커서 보이게 하고싶다.
+		PlayerController->SetShowMouseCursor(true);
+		// 입력모드를 UI만 하고싶다.
+		PlayerController->SetInputMode(FInputModeUIOnly());
 	}
 }
 

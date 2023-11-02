@@ -44,4 +44,13 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UParticleSystem* explosionVFX;
+
+
+	// 게임오버UI공장
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UGameOverWidget> gameOverUIFactory;
+	
+	// 게임오버UI
+	UPROPERTY()
+	class UGameOverWidget* gameOverUI;
 };

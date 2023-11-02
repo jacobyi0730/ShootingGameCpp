@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "EnemyActor.h"
 #include "Kismet/GameplayStatics.h"
+#include "ShootingCppGameModeBase.h"
 
 // Sets default values
 ABulletActor::ABulletActor()
@@ -87,5 +88,8 @@ void ABulletActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponen
 		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, enemy->GetActorTransform());
 
+		// 총알이 적을 파괴하면 AShootingCppGameModeBase의 AddScore(1);
+		AShootingCppGameModeBase* gmode = Cast<AShootingCppGameModeBase>(GetWorld()->GetAuthGameMode());
+		gmode->AddScore(1);
 	}
 }
