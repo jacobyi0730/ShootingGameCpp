@@ -35,5 +35,12 @@ public:
 	UPROPERTY()
 	class UScoreWidget* scoreUI;
 
+private:
+
+	FString slotName = TEXT("HighScore");
+	int slotIndex = 0;
+
+	int LoadGame(int defaultValue);
+	void SaveGame();
 };
 
