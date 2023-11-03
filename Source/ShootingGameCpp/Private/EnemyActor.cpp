@@ -18,7 +18,7 @@ AEnemyActor::AEnemyActor()
 	SetRootComponent(box);
 	box->SetBoxExtent(FVector(50));
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
-	
+
 	// 파일 로딩 시도
 	auto cubeMesh = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/Models/Drone/Drone_low.Drone_low'"));
 
@@ -89,16 +89,16 @@ void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent
 {
 	// 상대방이 Player라면
 	APlayerPawn* player = Cast<APlayerPawn>(OtherActor);
-	if (player)
+	if (nullptr == player)
+		return;
+
+	// 플레이어의 체력을 1 감소하고싶다.
+	player->OnDamageProcess(1);
+	// 만약 플레이어의 체력이 0이하라면 파괴하고싶다.
+	if (player->hp <= 0)
 	{
 		// 너죽고
 		player->Destroy();
-		//  나죽고 하고싶다.
-		this->Destroy();
-
-		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
-
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, GetActorLocation(), GetActorRotation());
 
 		// 게임오버 UI를 화면에 보이게 하고싶다.
 		auto ui = CreateWidget(GetWorld(), gameOverUIFactory);
@@ -113,5 +113,12 @@ void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent
 		// 입력모드를 UI만 하고싶다.
 		PlayerController->SetInputMode(FInputModeUIOnly());
 	}
+
+	//  나죽고 하고싶다.
+	this->Destroy();
+
+	UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
+
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, GetActorLocation(), GetActorRotation());
 }
 

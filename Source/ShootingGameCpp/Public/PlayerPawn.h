@@ -63,4 +63,18 @@ public:
 	void ActionFireReleased();
 
 	void MakeBullet();
+
+	// 플레이어의 체력 UI를 만들어서 붙이고 싶다.
+	// 위젯 컴포넌트
+	UPROPERTY(EditAnywhere)
+	class UWidgetComponent* hpComp;
+
+	UPROPERTY()
+	class UPlayerHPWidget* playerHP;
+
+	int hp;
+
+	UPROPERTY(EditAnywhere)
+	int maxHP = 10;
+	void OnDamageProcess(int damage);
 };

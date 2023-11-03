@@ -7,6 +7,8 @@
 #include "BulletActor.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/StaticMesh.h"
+#include "Components/WidgetComponent.h"
+#include "PlayerHPWidget.h"
 
 APlayerPawn::APlayerPawn()
 {
@@ -49,12 +51,23 @@ APlayerPawn::APlayerPawn()
 	box->SetGenerateOverlapEvents(true);
 
 	box->SetCollisionProfileName(TEXT("Player"));
+
+	// 플레이어의 체력 UI를 만들어서 붙이고 싶다.
+	hpComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("hpComp"));
+
+	hpComp->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
 void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
+	playerHP = Cast<UPlayerHPWidget>(hpComp->GetWidget());
+	// 태어날 때 체력을 최대체력으로 하고싶다.
+	hp = maxHP;
+	// UI에도 반영하고싶다.
+	playerHP->SetPercent(hp, maxHP);
+
 }
 
 // Called every frame
@@ -136,5 +149,14 @@ void APlayerPawn::MakeBullet()
 	GetWorld()->SpawnActor<ABulletActor>(bulletFactory, arrow->GetComponentTransform());
 
 	UGameplayStatics::PlaySound2D(GetWorld(), fireSound);
+}
+
+void APlayerPawn::OnDamageProcess(int damage)
+{
+	if (--hp < 0)
+	{
+		hp = 0;
+	}
+	playerHP->SetPercent(hp, maxHP);
 }
 
