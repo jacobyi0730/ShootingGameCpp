@@ -7,6 +7,7 @@
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameOverWidget.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AEnemyActor::AEnemyActor()
@@ -69,6 +70,9 @@ void AEnemyActor::BeginPlay()
 		//  앞방향을 기억 하고싶다.
 		direction = GetActorForwardVector();
 	}
+
+	FRotator rot = UKismetMathLibrary::MakeRotFromXZ(direction, GetActorUpVector());
+	SetActorRotation(rot);
 
 	// box에게 충돌했으면 나도 알려줘라고 하고싶다.
 	box->OnComponentBeginOverlap.AddDynamic(this, &AEnemyActor::OnBoxCompBeginOverlap);
