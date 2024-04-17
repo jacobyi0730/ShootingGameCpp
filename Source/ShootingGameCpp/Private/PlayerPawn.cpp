@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "PlayerPawn.h"
@@ -14,21 +14,21 @@ APlayerPawn::APlayerPawn()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	// boxÀÇ ¸ğ¾çÀ» ¸¸µé°í½Í´Ù.
+	// boxì˜ ëª¨ì–‘ì„ ë§Œë“¤ê³ ì‹¶ë‹¤.
 	box = CreateDefaultSubobject<UBoxComponent>(TEXT("box"));
-	// ¹Ú½º¸¦ RootComponent·Î ÇÏ°í½Í´Ù.	
+	// ë°•ìŠ¤ë¥¼ RootComponentë¡œ í•˜ê³ ì‹¶ë‹¤.	
 	SetRootComponent(box);
 
-	// cube ¿Ü°üÀ» ¸¸µé°í½Í´Ù.
+	// cube ì™¸ê´€ì„ ë§Œë“¤ê³ ì‹¶ë‹¤.
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
 
-	// ÆÄÀÏ ·Îµù ½Ãµµ
+	// íŒŒì¼ ë¡œë”© ì‹œë„
 	auto cubeMesh = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/Models/SpaceShip/Spaceship_ARA.Spaceship_ARA'"));
 
-	// ¸¸¾à ÆÄÀÏ ·Îµù ¼º°ø¿©ºÎ È®ÀÎÇØ¼­ ¼º°øÇß´Ù¸é
+	// ë§Œì•½ íŒŒì¼ ë¡œë”© ì„±ê³µì—¬ë¶€ í™•ì¸í•´ì„œ ì„±ê³µí–ˆë‹¤ë©´
 	if (cubeMesh.Succeeded())
 	{
-		// cube¿¡ mesh¸¦ ³Ö¾îÁà¾ßÇÔ
+		// cubeì— meshë¥¼ ë„£ì–´ì¤˜ì•¼í•¨
 		cube->SetStaticMesh(cubeMesh.Object);
 
 		//(Pitch = 0.000001, Yaw = 89.999999, Roll = 90.000000)
@@ -37,10 +37,10 @@ APlayerPawn::APlayerPawn()
 		cube->SetRelativeScale3D(FVector(3.0f));
 	}
 
-	// ¿Ü°üÀ» Root¿¡ ºÙÀÌ°í½Í´Ù.(Attach)
+	// ì™¸ê´€ì„ Rootì— ë¶™ì´ê³ ì‹¶ë‹¤.(Attach)
 	cube->SetupAttachment(box);
 
-	// arrow¸¦ »ı¼ºÇØ¼­ ¹èÄ¡ÇÏ°í½Í´Ù.
+	// arrowë¥¼ ìƒì„±í•´ì„œ ë°°ì¹˜í•˜ê³ ì‹¶ë‹¤.
 	arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("arrow"));
 	arrow->SetupAttachment(box);
 	// Loc (X=0.000000,Y=0.000000,Z=70.000000)
@@ -52,7 +52,7 @@ APlayerPawn::APlayerPawn()
 
 	box->SetCollisionProfileName(TEXT("Player"));
 
-	// ÇÃ·¹ÀÌ¾îÀÇ Ã¼·Â UI¸¦ ¸¸µé¾î¼­ ºÙÀÌ°í ½Í´Ù.
+	// í”Œë ˆì´ì–´ì˜ ì²´ë ¥ UIë¥¼ ë§Œë“¤ì–´ì„œ ë¶™ì´ê³  ì‹¶ë‹¤.
 	hpComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("hpComp"));
 
 	hpComp->SetupAttachment(RootComponent);
@@ -63,9 +63,9 @@ void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	playerHP = Cast<UPlayerHPWidget>(hpComp->GetWidget());
-	// ÅÂ¾î³¯ ¶§ Ã¼·ÂÀ» ÃÖ´ëÃ¼·ÂÀ¸·Î ÇÏ°í½Í´Ù.
+	// íƒœì–´ë‚  ë•Œ ì²´ë ¥ì„ ìµœëŒ€ì²´ë ¥ìœ¼ë¡œ í•˜ê³ ì‹¶ë‹¤.
 	hp = maxHP;
-	// UI¿¡µµ ¹İ¿µÇÏ°í½Í´Ù.
+	// UIì—ë„ ë°˜ì˜í•˜ê³ ì‹¶ë‹¤.
 	playerHP->SetPercent(hp, maxHP);
 
 }
@@ -87,17 +87,17 @@ void APlayerPawn::Tick(float DeltaTime)
 	//=================================================
 
 	//AutoFire =======================================
-	// ¸¸¾à bAutoFire°¡ true¶ó¸é
+	// ë§Œì•½ bAutoFireê°€ trueë¼ë©´
 	if (true == bAutoFire)
 	{
-		//   ½Ã°£ÀÌ Èå¸£´Ù°¡
+		//   ì‹œê°„ì´ íë¥´ë‹¤ê°€
 		currentTime += DeltaTime;
-		//   ÇöÀç½Ã°£ÀÌ »ı¼º½Ã°£ÀÌµÇ¸é
+		//   í˜„ì¬ì‹œê°„ì´ ìƒì„±ì‹œê°„ì´ë˜ë©´
 		if (currentTime > makeTime)
 		{
-			//   MakeBulletÇÔ¼ö¸¦ È£ÃâÇÏ°í½Í´Ù.
+			//   MakeBulletí•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê³ ì‹¶ë‹¤.
 			MakeBullet();
-			//   ÇöÀç½Ã°£À» 0À¸·Î ÃÊ±âÈ­ ÇÏ°í½Í´Ù.
+			//   í˜„ì¬ì‹œê°„ì„ 0ìœ¼ë¡œ ì´ˆê¸°í™” í•˜ê³ ì‹¶ë‹¤.
 			currentTime = 0;
 		}
 	}
@@ -108,7 +108,7 @@ void APlayerPawn::Tick(float DeltaTime)
 void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	// ÀÔ·ÂÀÌ ¹ß»ıÇÒ ¶§ È£ÃâµÉ ÇÔ¼ö¸¦ µî·ÏÇØ¾ßÇÑ´Ù.
+	// ì…ë ¥ì´ ë°œìƒí•  ë•Œ í˜¸ì¶œë  í•¨ìˆ˜ë¥¼ ë“±ë¡í•´ì•¼í•œë‹¤.
 
 	PlayerInputComponent->BindAxis(TEXT("Horizontal"), this, &APlayerPawn::AxisHorizontal);
 
@@ -131,16 +131,16 @@ void APlayerPawn::AxisVertical(float value)
 
 void APlayerPawn::ActionFirePressed()
 {
-	// ÀÚµ¿ÃÑ½î±â ÇÏ°í ½Í´Ù.
+	// ìë™ì´ì˜ê¸° í•˜ê³  ì‹¶ë‹¤.
 	bAutoFire = true;
-	// ÇöÀç½Ã°£À» 0À¸·Î ÃÊ±âÈ­ ÇÏ°í ½Í´Ù.
+	// í˜„ì¬ì‹œê°„ì„ 0ìœ¼ë¡œ ì´ˆê¸°í™” í•˜ê³  ì‹¶ë‹¤.
 	currentTime = 0;
 	MakeBullet();
 }
 
 void APlayerPawn::ActionFireReleased()
 {
-	// ÀÚµ¿ÃÑ½î±â ±×¸¸ ÇÏ°í½Í´Ù.
+	// ìë™ì´ì˜ê¸° ê·¸ë§Œ í•˜ê³ ì‹¶ë‹¤.
 	bAutoFire = false;
 }
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -18,10 +18,10 @@ class SHOOTINGGAMECPP_API AShootingCppGameModeBase : public AGameModeBase
 public:
 	virtual void BeginPlay() override;
 
-	// ÅÂ¾î³¯ ¶§ ScoreWidgetÀ» »ı¼ºÇØ¼­ Viewport¿¡ º¸ÀÌ°ÔÇÏ°í½Í´Ù.
-	// Á¡¼ö¿Í ÃÖ°íÁ¡¼ö¸¦ °ü¸®ÇÏ°í½Í´Ù.
-	// ÅÂ¾î³¯¶§ Á¡¼ö¸¦ 0Á¡À¸·Î ÇÏ°í UIµµ °»½ÅÇÏ°í ½Í´Ù.
-	// ÃÑ¾ËÀÌ ÀûÀ» ÆÄ±«ÇÏ¸é Á¡¼ö¸¦ 1Á¡ Áõ°¡½ÃÅ°°í UIµµ °»½ÅÇÏ°í ½Í´Ù.
+	// íƒœì–´ë‚  ë•Œ ScoreWidgetì„ ìƒì„±í•´ì„œ Viewportì— ë³´ì´ê²Œí•˜ê³ ì‹¶ë‹¤.
+	// ì ìˆ˜ì™€ ìµœê³ ì ìˆ˜ë¥¼ ê´€ë¦¬í•˜ê³ ì‹¶ë‹¤.
+	// íƒœì–´ë‚ ë•Œ ì ìˆ˜ë¥¼ 0ì ìœ¼ë¡œ í•˜ê³  UIë„ ê°±ì‹ í•˜ê³  ì‹¶ë‹¤.
+	// ì´ì•Œì´ ì ì„ íŒŒê´´í•˜ë©´ ì ìˆ˜ë¥¼ 1ì  ì¦ê°€ì‹œí‚¤ê³  UIë„ ê°±ì‹ í•˜ê³  ì‹¶ë‹¤.
 public:
 
 	int score;

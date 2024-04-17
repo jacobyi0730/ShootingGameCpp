@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "EnemyActor.h"
@@ -20,10 +20,10 @@ AEnemyActor::AEnemyActor()
 	box->SetBoxExtent(FVector(50));
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
 
-	// ÆÄÀÏ ·Îµù ½Ãµµ
+	// íŒŒì¼ ë¡œë”© ì‹œë„
 	auto cubeMesh = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/Models/Drone/Drone_low.Drone_low'"));
 
-	// ¸¸¾à ÆÄÀÏ ·Îµù ¼º°ø¿©ºÎ È®ÀÎÇØ¼­ ¼º°øÇß´Ù¸é
+	// ë§Œì•½ íŒŒì¼ ë¡œë”© ì„±ê³µì—¬ë¶€ í™•ì¸í•´ì„œ ì„±ê³µí–ˆë‹¤ë©´
 	if (cubeMesh.Succeeded())
 	{
 		cube->SetStaticMesh(cubeMesh.Object);
@@ -43,12 +43,12 @@ AEnemyActor::AEnemyActor()
 void AEnemyActor::BeginPlay()
 {
 	Super::BeginPlay();
-	// ÅÂ¾î³¯ ¶§ ¹æÇâÀ» Á¤ÇÏ°í½Í´Ù.
-	// 30% È®·ü·Î´Â ÇÃ·¹ÀÌ¾î¸¦ ÇâÇÏ´Â ¹æÇâ, ³ª¸ÓÁö È®·ü·Î´Â ¾Õ¹æÇâÀ¸·Î ÇÏ°í½Í´Ù.
+	// íƒœì–´ë‚  ë•Œ ë°©í–¥ì„ ì •í•˜ê³ ì‹¶ë‹¤.
+	// 30% í™•ë¥ ë¡œëŠ” í”Œë ˆì´ì–´ë¥¼ í–¥í•˜ëŠ” ë°©í–¥, ë‚˜ë¨¸ì§€ í™•ë¥ ë¡œëŠ” ì•ë°©í–¥ìœ¼ë¡œ í•˜ê³ ì‹¶ë‹¤.
 
-	// È®·üÀ» ±¸ÇÏ°í½Í´Ù.
+	// í™•ë¥ ì„ êµ¬í•˜ê³ ì‹¶ë‹¤.
 	int32 randValue = FMath::RandRange(0, 9);
-	// ¸¸¾à 30%¶ó¸é
+	// ë§Œì•½ 30%ë¼ë©´
 	if (randValue < 3)
 	{
 		//for (TActorIterator<APlayerPawn> it(GetWorld()); it; ++it)
@@ -57,30 +57,30 @@ void AEnemyActor::BeginPlay()
 		//	if (target == nullptr)
 		//		continue;
 
-		//	//   ÇÃ·¹ÀÌÆùÀº ÇâÇÏ´Â ¹æÇâÀ» ±¸ÇØ¼­ ±â¾ïÇÏ°í½Í´Ù.
+		//	//   í”Œë ˆì´í°ì€ í–¥í•˜ëŠ” ë°©í–¥ì„ êµ¬í•´ì„œ ê¸°ì–µí•˜ê³ ì‹¶ë‹¤.
 		//	direction = target->GetActorLocation() - GetActorLocation();
-		//	//   ±× ¹æÇâÀÇ Å©±â¸¦ 1·Î ¸¸µé°í½Í´Ù.
+		//	//   ê·¸ ë°©í–¥ì˜ í¬ê¸°ë¥¼ 1ë¡œ ë§Œë“¤ê³ ì‹¶ë‹¤.
 		//	direction.Normalize();
 		//	break;
 		//}
-
-		//   ÇÃ·¹ÀÌ¾î¸¦ Ã£°í½Í´Ù.
+		
+		//   í”Œë ˆì´ì–´ë¥¼ ì°¾ê³ ì‹¶ë‹¤.
 		AActor* target = UGameplayStatics::GetPlayerPawn( GetWorld() , 0 );
-		//   ÇÃ·¹ÀÌ¾î¸¦ ÇâÇÏ´Â ¹æÇâÀ» ±¸ÇØ¼­ ±â¾ïÇÏ°í½Í´Ù.
+		//   í”Œë ˆì´ì–´ë¥¼ í–¥í•˜ëŠ” ë°©í–¥ì„ êµ¬í•´ì„œ ê¸°ì–µí•˜ê³ ì‹¶ë‹¤.
 		direction = target->GetActorLocation() - GetActorLocation();
-		//   ±× ¹æÇâÀÇ Å©±â¸¦ 1·Î ¸¸µé°í½Í´Ù.
+		//   ê·¸ ë°©í–¥ì˜ í¬ê¸°ë¥¼ 1ë¡œ ë§Œë“¤ê³ ì‹¶ë‹¤.
 		direction.Normalize();
 	}
-	// ±×·¸Áö ¾Ê´Ù¸é
+	// ê·¸ë ‡ì§€ ì•Šë‹¤ë©´
 	else {
-		//  ¾Õ¹æÇâÀ» ±â¾ï ÇÏ°í½Í´Ù.
+		//  ì•ë°©í–¥ì„ ê¸°ì–µ í•˜ê³ ì‹¶ë‹¤.
 		direction = GetActorForwardVector();
 	}
 
 	FRotator rot = UKismetMathLibrary::MakeRotFromXZ(direction, GetActorUpVector());
 	SetActorRotation(rot);
 
-	// box¿¡°Ô Ãæµ¹ÇßÀ¸¸é ³ªµµ ¾Ë·ÁÁà¶ó°í ÇÏ°í½Í´Ù.
+	// boxì—ê²Œ ì¶©ëŒí–ˆìœ¼ë©´ ë‚˜ë„ ì•Œë ¤ì¤˜ë¼ê³  í•˜ê³ ì‹¶ë‹¤.
 	box->OnComponentBeginOverlap.AddDynamic(this, &AEnemyActor::OnBoxCompBeginOverlap);
 }
 
@@ -97,34 +97,34 @@ void AEnemyActor::Tick(float DeltaTime)
 
 void AEnemyActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// »ó´ë¹æÀÌ Player¶ó¸é
+	// ìƒëŒ€ë°©ì´ Playerë¼ë©´
 	APlayerPawn* player = Cast<APlayerPawn>(OtherActor);
 	if (nullptr == player)
 		return;
 
-	// ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀ» 1 °¨¼ÒÇÏ°í½Í´Ù.
+	// í”Œë ˆì´ì–´ì˜ ì²´ë ¥ì„ 1 ê°ì†Œí•˜ê³ ì‹¶ë‹¤.
 	player->OnDamageProcess(1);
-	// ¸¸¾à ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀÌ 0ÀÌÇÏ¶ó¸é ÆÄ±«ÇÏ°í½Í´Ù.
+	// ë§Œì•½ í”Œë ˆì´ì–´ì˜ ì²´ë ¥ì´ 0ì´í•˜ë¼ë©´ íŒŒê´´í•˜ê³ ì‹¶ë‹¤.
 	if (player->hp <= 0)
 	{
-		// ³ÊÁ×°í
+		// ë„ˆì£½ê³ 
 		player->Destroy();
 
-		// °ÔÀÓ¿À¹ö UI¸¦ È­¸é¿¡ º¸ÀÌ°Ô ÇÏ°í½Í´Ù.
+		// ê²Œì„ì˜¤ë²„ UIë¥¼ í™”ë©´ì— ë³´ì´ê²Œ í•˜ê³ ì‹¶ë‹¤.
 		auto ui = CreateWidget(GetWorld(), gameOverUIFactory);
 		gameOverUI = Cast<UGameOverWidget>(ui);
 		gameOverUI->AddToViewport(99);
 
 		auto PlayerController = GetWorld()->GetFirstPlayerController();
-		// ÀÏ½ÃÁ¤Áö ÇÏ°í½Í´Ù.
+		// ì¼ì‹œì •ì§€ í•˜ê³ ì‹¶ë‹¤.
 		PlayerController->SetPause(true);
-		// ¸¶¿ì½º Ä¿¼­ º¸ÀÌ°Ô ÇÏ°í½Í´Ù.
+		// ë§ˆìš°ìŠ¤ ì»¤ì„œ ë³´ì´ê²Œ í•˜ê³ ì‹¶ë‹¤.
 		PlayerController->SetShowMouseCursor(true);
-		// ÀÔ·Â¸ğµå¸¦ UI¸¸ ÇÏ°í½Í´Ù.
+		// ì…ë ¥ëª¨ë“œë¥¼ UIë§Œ í•˜ê³ ì‹¶ë‹¤.
 		PlayerController->SetInputMode(FInputModeUIOnly());
 	}
 
-	//  ³ªÁ×°í ÇÏ°í½Í´Ù.
+	//  ë‚˜ì£½ê³  í•˜ê³ ì‹¶ë‹¤.
 	this->Destroy();
 
 	UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);

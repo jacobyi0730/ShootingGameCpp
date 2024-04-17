@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "DestroyZoneActor.h"
@@ -35,7 +35,7 @@ void ADestroyZoneActor::Tick(float DeltaTime)
 void ADestroyZoneActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
-	// »ó´ë¸¦ ÆÄ±«ÇÏ°í ½Í´Ù.
+	// ìƒëŒ€ë¥¼ íŒŒê´´í•˜ê³  ì‹¶ë‹¤.
 	OtherActor->Destroy();
 }
 

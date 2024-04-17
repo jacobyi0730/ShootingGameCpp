@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -30,14 +30,14 @@ public:
 	UFUNCTION()
 	void OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	// Ãæµ¹Ã¼¿Í ¿Ü°üÀ» ¸¸µé°í½Í´Ù.
+	// ì¶©ëŒì²´ì™€ ì™¸ê´€ì„ ë§Œë“¤ê³ ì‹¶ë‹¤.
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* box;
 
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* cube;
 
-	// ¾Õ ¹æÇâÀ¸·Î °è¼Ó ÀÌµ¿ÇÏ°í½Í´Ù.
+	// ì• ë°©í–¥ìœ¼ë¡œ ê³„ì† ì´ë™í•˜ê³ ì‹¶ë‹¤.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float speed = 1000;
 

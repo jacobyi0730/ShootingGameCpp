@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -24,17 +24,17 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	// [ÇÊ¿ä¿ä¼Ò]
-	// - ¹Ú½ºÄÄÆ÷³ÍÆ®
+	// [í•„ìš”ìš”ì†Œ]
+	// - ë°•ìŠ¤ì»´í¬ë„ŒíŠ¸
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* box;
-	// - staticMeshÄÄÆ÷³ÍÆ®
+	// - staticMeshì»´í¬ë„ŒíŠ¸
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* cube;
-	// - ¼Óµµ
+	// - ì†ë„
 	UPROPERTY(EditAnywhere)
 	float speed = 450;
-	// - ¸ñÀûÁö
+	// - ëª©ì ì§€
 	UPROPERTY(EditAnywhere)
 	AActor* targetActor;
 	

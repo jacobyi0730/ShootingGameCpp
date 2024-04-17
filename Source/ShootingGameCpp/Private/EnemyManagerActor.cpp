@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "EnemyManagerActor.h"
@@ -14,7 +14,7 @@ AEnemyManagerActor::AEnemyManagerActor()
 	SetRootComponent(root);
 	arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("arrow"));
 	arrow->SetupAttachment(root);
-	// arrow¸¦ È¸ÀüÇÏ°í½Í´Ù. (Pitch=-90.000000,Yaw=0.000000,Roll=180.000000)
+	// arrowë¥¼ íšŒì „í•˜ê³ ì‹¶ë‹¤. (Pitch=-90.000000,Yaw=0.000000,Roll=180.000000)
 	arrow->SetWorldRotation(FRotator(-90, 0, 180));
 
 }
@@ -23,7 +23,7 @@ AEnemyManagerActor::AEnemyManagerActor()
 void AEnemyManagerActor::BeginPlay()
 {
 	Super::BeginPlay();
-	// makeTimeÀ» Á¤ÇÏ°í½Í´Ù. 
+	// makeTimeì„ ì •í•˜ê³ ì‹¶ë‹¤. 
 	makeTime = FMath::RandRange(minTime, maxTime);
 }
 
@@ -32,17 +32,17 @@ void AEnemyManagerActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// ½Ã°£ÀÌ Èå¸£´Ù°¡
+	// ì‹œê°„ì´ íë¥´ë‹¤ê°€
 	currentTime += DeltaTime;
-	// ¸¸¾à ÇöÀç½Ã°£ÀÌ »ı¼º½Ã°£À» ÃÊ°úÇß´Ù¸é 
+	// ë§Œì•½ í˜„ì¬ì‹œê°„ì´ ìƒì„±ì‹œê°„ì„ ì´ˆê³¼í–ˆë‹¤ë©´ 
 	if (currentTime > makeTime)
 	{
-		//		ÇöÀç½Ã°£À» 0À¸·Î ÃÊ±âÈ­ ÇÏ°í½Í´Ù.
+		//		í˜„ì¬ì‹œê°„ì„ 0ìœ¼ë¡œ ì´ˆê¸°í™” í•˜ê³ ì‹¶ë‹¤.
 		currentTime = 0;
-		//		Àû °øÀå¿¡¼­ ÀûÀ» ¸¸µé¾î¼­ ArrowÀ§Ä¡¿¡ ¹èÄ¡ÇÏ°í ½Í´Ù
+		//		ì  ê³µì¥ì—ì„œ ì ì„ ë§Œë“¤ì–´ì„œ Arrowìœ„ì¹˜ì— ë°°ì¹˜í•˜ê³  ì‹¶ë‹¤
 		GetWorld()->SpawnActor<AEnemyActor>(enemyFactory, arrow->GetComponentTransform());
 
-		// makeTimeÀ» Á¤ÇÏ°í½Í´Ù. 
+		// makeTimeì„ ì •í•˜ê³ ì‹¶ë‹¤. 
 		makeTime = FMath::RandRange(minTime, maxTime);
 	}
 }

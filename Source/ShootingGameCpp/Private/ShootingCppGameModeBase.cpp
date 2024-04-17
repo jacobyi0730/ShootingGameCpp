@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "ShootingCppGameModeBase.h"
@@ -9,7 +9,7 @@
 
 void AShootingCppGameModeBase::BeginPlay()
 {
-	// ÅÂ¾î³¯ ¶§ ScoreWidgetÀ» »ı¼ºÇØ¼­ Viewport¿¡ º¸ÀÌ°ÔÇÏ°í½Í´Ù.
+	// íƒœì–´ë‚  ë•Œ ScoreWidgetì„ ìƒì„±í•´ì„œ Viewportì— ë³´ì´ê²Œí•˜ê³ ì‹¶ë‹¤.
 	auto ui = CreateWidget(GetWorld(), scoreUIFactory);
 	scoreUI = Cast<UScoreWidget>(ui);
 	scoreUI->AddToViewport();
@@ -17,29 +17,29 @@ void AShootingCppGameModeBase::BeginPlay()
 	highScore = LoadGame(0);
 	scoreUI->HighScore->SetText(FText::AsNumber(highScore));
 
-	// ÅÂ¾î³¯¶§ Á¡¼ö¸¦ 0Á¡À¸·Î ÇÏ°í UIµµ °»½ÅÇÏ°í ½Í´Ù.
+	// íƒœì–´ë‚ ë•Œ ì ìˆ˜ë¥¼ 0ì ìœ¼ë¡œ í•˜ê³  UIë„ ê°±ì‹ í•˜ê³  ì‹¶ë‹¤.
 	score = 0;
 	scoreUI->Score->SetText(FText::AsNumber(score));
 
 	auto PlayerController = GetWorld()->GetFirstPlayerController();
-	// ÀÏ½ÃÁ¤Áö ÇÏ°í½Í´Ù.
+	// ì¼ì‹œì •ì§€ í•˜ê³ ì‹¶ë‹¤.
 	PlayerController->SetPause(false);
-	// ¸¶¿ì½º Ä¿¼­ º¸ÀÌ°Ô ÇÏ°í½Í´Ù.
+	// ë§ˆìš°ìŠ¤ ì»¤ì„œ ë³´ì´ê²Œ í•˜ê³ ì‹¶ë‹¤.
 	PlayerController->SetShowMouseCursor(false);
-	// ÀÔ·Â¸ğµå¸¦ UI¸¸ ÇÏ°í½Í´Ù.
+	// ì…ë ¥ëª¨ë“œë¥¼ UIë§Œ í•˜ê³ ì‹¶ë‹¤.
 	PlayerController->SetInputMode(FInputModeGameOnly());
 
 }
 
-// Á¡¼ö¸¦ Áõ°¡½ÃÅ°°í UIµµ °»½ÅÇÏ°í ½Í´Ù.
+// ì ìˆ˜ë¥¼ ì¦ê°€ì‹œí‚¤ê³  UIë„ ê°±ì‹ í•˜ê³  ì‹¶ë‹¤.
 void AShootingCppGameModeBase::AddScore(int value)
 {
 	score += value;
 	scoreUI->Score->SetText(FText::AsNumber(score));
-	// ¸¸¾à Á¡¼ö°¡ ÃÖ°íÁ¡¼öº¸´Ù Å©´Ù¸é
+	// ë§Œì•½ ì ìˆ˜ê°€ ìµœê³ ì ìˆ˜ë³´ë‹¤ í¬ë‹¤ë©´
 	if (score > highScore)
 	{
-		// ÃÖ°íÁ¡¼ö = Á¡¼ö ·Î °»½Å ÇØÁÖ°í ½Í´Ù.
+		// ìµœê³ ì ìˆ˜ = ì ìˆ˜ ë¡œ ê°±ì‹  í•´ì£¼ê³  ì‹¶ë‹¤.
 		highScore = score;
 		scoreUI->HighScore->SetText(FText::AsNumber(highScore));
 
@@ -49,10 +49,10 @@ void AShootingCppGameModeBase::AddScore(int value)
 
 int AShootingCppGameModeBase::LoadGame(int defaultValue = 0)
 {
-	//1. ÆÄÀÏÀÌ Á¸ÀçÇÏ³ª ? (½½·ÔÀÌ¸§)
+	//1. íŒŒì¼ì´ ì¡´ì¬í•˜ë‚˜ ? (ìŠ¬ë¡¯ì´ë¦„)
 	if (UGameplayStatics::DoesSaveGameExist(slotName, slotIndex))
 	{
-		//2. SGO = Load Slot(½½·ÔÀÌ¸§, ÀÎµ¦½º¹øÈ£)
+		//2. SGO = Load Slot(ìŠ¬ë¡¯ì´ë¦„, ì¸ë±ìŠ¤ë²ˆí˜¸)
 		auto sgo = UGameplayStatics::LoadGameFromSlot(slotName, slotIndex);
 		//3. return SGI->highScoreSave
 		UShootingSaveGame* shootSGO = Cast<UShootingSaveGame>(sgo);
@@ -64,15 +64,15 @@ int AShootingCppGameModeBase::LoadGame(int defaultValue = 0)
 
 void AShootingCppGameModeBase::SaveGame()
 {
-	//1. ÀúÀå¼Ò´Â ½½·ÔÀÌ¸§(HighScore)°ú ÀÎµ¦½º¹øÈ£(0)
-	//2. SaveGameObject(SGO)¸¦ »ı¼ºÇÑ´Ù.
+	//1. ì €ì¥ì†ŒëŠ” ìŠ¬ë¡¯ì´ë¦„(HighScore)ê³¼ ì¸ë±ìŠ¤ë²ˆí˜¸(0)
+	//2. SaveGameObject(SGO)ë¥¼ ìƒì„±í•œë‹¤.
 	USaveGame* sgo = UGameplayStatics::CreateSaveGameObject(UShootingSaveGame::StaticClass());
 
 	UShootingSaveGame* shootSGO = Cast<UShootingSaveGame>(sgo);
 
 	//3. SGO->highScoreSave = highScore;
 	shootSGO->highScoreSave = highScore;
-	//4. Save Slot(SGO, ½½·ÔÀÌ¸§, ÀÎµ¦½º¹øÈ£)
+	//4. Save Slot(SGO, ìŠ¬ë¡¯ì´ë¦„, ì¸ë±ìŠ¤ë²ˆí˜¸)
 
 	UGameplayStatics::SaveGameToSlot(shootSGO, slotName, slotIndex);
 

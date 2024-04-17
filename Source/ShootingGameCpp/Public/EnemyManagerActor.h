@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -24,15 +24,15 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	// ½Ã°£ÀÌ Èå¸£´Ù°¡ »ı¼º½Ã°£ÀÌ µÇ¸é Àû °øÀå¿¡¼­ ÀûÀ» ¸¸µé¾î¼­ ArrowÀ§Ä¡¿¡ ¹èÄ¡ÇÏ°í ½Í´Ù.
-	// »ı¼º½Ã°£À» ¸Å¹ø ¹Ù²Ù°í ½Í´Ù. ÃÖ¼Ú°ª, ÃÖ´ë°ª
-	// ¼Ó¼º(¸É¹öº¯¼ö)
-	// ÇöÀç½Ã°£, »ı¼º½Ã°£, Àû °øÀå, Arrow
+	// ì‹œê°„ì´ íë¥´ë‹¤ê°€ ìƒì„±ì‹œê°„ì´ ë˜ë©´ ì  ê³µì¥ì—ì„œ ì ì„ ë§Œë“¤ì–´ì„œ Arrowìœ„ì¹˜ì— ë°°ì¹˜í•˜ê³  ì‹¶ë‹¤.
+	// ìƒì„±ì‹œê°„ì„ ë§¤ë²ˆ ë°”ê¾¸ê³  ì‹¶ë‹¤. ìµœì†Ÿê°’, ìµœëŒ€ê°’
+	// ì†ì„±(ë§´ë²„ë³€ìˆ˜)
+	// í˜„ì¬ì‹œê°„, ìƒì„±ì‹œê°„, ì  ê³µì¥, Arrow
 	float currentTime;
 	float makeTime = 2;
-	// makeTimeÀ» Á¤ÇÏ°í½Í´Ù. 
-	// 1. ÅÂ¾î³¯ ¶§
-	// 2. Enemy¸¦ SpawnÇÏ°í³ª¼­ 
+	// makeTimeì„ ì •í•˜ê³ ì‹¶ë‹¤. 
+	// 1. íƒœì–´ë‚  ë•Œ
+	// 2. Enemyë¥¼ Spawní•˜ê³ ë‚˜ì„œ 
 	UPROPERTY(EditAnywhere)
 	float minTime = 1;
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "GameOverWidget.h"
@@ -8,7 +8,7 @@
 
 void UGameOverWidget::NativeConstruct()
 {
-	// Àç½ÃÀÛ, Á¾·á ¹öÆ°À» ´­·¶À» ¶§ ³ªµµ Á» ¾Ë·ÁÁà ¶ó°í ÇÏ°í½Í´Ù.
+	// ì¬ì‹œì‘, ì¢…ë£Œ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ ë‚˜ë„ ì¢€ ì•Œë ¤ì¤˜ ë¼ê³  í•˜ê³ ì‹¶ë‹¤.
 	ButtonRestart->OnClicked.AddDynamic(this, &UGameOverWidget::OnClickRestart);
 
 	ButtonQuit->OnClicked.AddDynamic(this, &UGameOverWidget::OnClickQuit);
@@ -16,11 +16,11 @@ void UGameOverWidget::NativeConstruct()
 
 void UGameOverWidget::OnClickRestart()
 {
-	// ÇöÀç ·¹º§ÀÇ ÀÌ¸§À» ¾Ë°í½Í´Ù.
+	// í˜„ì¬ ë ˆë²¨ì˜ ì´ë¦„ì„ ì•Œê³ ì‹¶ë‹¤.
 	FString levelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
-	// ³ª¸¦ ºäÆ÷Æ®¿¡¼­ Á¦¿Ü½ÃÅ°°í½Í´Ù.
+	// ë‚˜ë¥¼ ë·°í¬íŠ¸ì—ì„œ ì œì™¸ì‹œí‚¤ê³ ì‹¶ë‹¤.
 	this->RemoveFromParent();
-	// ÇöÀç ·¹º§À» ´Ù½Ã ·ÎµåÇÏ°í ½Í´Ù.
+	// í˜„ì¬ ë ˆë²¨ì„ ë‹¤ì‹œ ë¡œë“œí•˜ê³  ì‹¶ë‹¤.
 	UGameplayStatics::OpenLevel(GetWorld(), FName(*levelName));
 }
 

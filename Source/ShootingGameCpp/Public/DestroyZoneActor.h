@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -27,7 +27,7 @@ public:
 
 
 public:
-	// ¸¸¾à ³ª¶û ºÎµúÈù »ó´ë°¡ ÀÖ´Ù¸é »ó´ë¸¦ ÆÄ±«ÇÏ°í½Í´Ù.
+	// ë§Œì•½ ë‚˜ë‘ ë¶€ë”ªíŒ ìƒëŒ€ê°€ ìˆë‹¤ë©´ ìƒëŒ€ë¥¼ íŒŒê´´í•˜ê³ ì‹¶ë‹¤.
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* box;
 	

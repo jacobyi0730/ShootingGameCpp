@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BulletActor.h"
@@ -13,17 +13,17 @@ ABulletActor::ABulletActor()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// Ãæµ¹Ã¼¿Í ¿Ü°üÀ» »ı¼ºÇÏ°í½Í´Ù. Ãæµ¹Ã¼¸¦ Root·ÎÇÏ°í ¿Ü°üÀ» Root¿¡ ºÙÀÌ°í½Í´Ù.
+	// ì¶©ëŒì²´ì™€ ì™¸ê´€ì„ ìƒì„±í•˜ê³ ì‹¶ë‹¤. ì¶©ëŒì²´ë¥¼ Rootë¡œí•˜ê³  ì™¸ê´€ì„ Rootì— ë¶™ì´ê³ ì‹¶ë‹¤.
 	box = CreateDefaultSubobject<UBoxComponent>(TEXT("box"));
 	SetRootComponent(box);
 
 	cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("cube"));
 	cube->SetupAttachment(RootComponent);
-	// ¿Ü°üÀÇ Å©±â°ú Ãæµ¹Ã¼ÀÇ Å©±â¸¦ ¼³Á¤ÇÏ°í½Í´Ù.
+	// ì™¸ê´€ì˜ í¬ê¸°ê³¼ ì¶©ëŒì²´ì˜ í¬ê¸°ë¥¼ ì„¤ì •í•˜ê³ ì‹¶ë‹¤.
 	cube->SetRelativeScale3D(FVector(0.75f, 0.25f, 1));
 	box->SetBoxExtent(FVector(37.5f, 12.5f, 50));
 
-	// Ãæµ¹¼³Á¤À» ÇÏ°í½Í´Ù.
+	// ì¶©ëŒì„¤ì •ì„ í•˜ê³ ì‹¶ë‹¤.
 	box->SetGenerateOverlapEvents(true);
 	
 	box->SetCollisionProfileName(TEXT("Bullet"));
@@ -41,7 +41,7 @@ void ABulletActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// box¿¡°Ô Ãæµ¹ÇÑ °ÍÀÌ ÀÖÀ¸¸é ¾Ë·Á ´Ş¶ó°í ÇÏ°í ½Í´Ù.
+	// boxì—ê²Œ ì¶©ëŒí•œ ê²ƒì´ ìˆìœ¼ë©´ ì•Œë ¤ ë‹¬ë¼ê³  í•˜ê³  ì‹¶ë‹¤.
 	box->OnComponentBeginOverlap.AddDynamic(this, &ABulletActor::OnBoxCompBeginOverlap);
 }
 
@@ -49,7 +49,7 @@ void ABulletActor::BeginPlay()
 void ABulletActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	// ¾Õ ¹æÇâÀ¸·Î °è¼Ó ÀÌµ¿ÇÏ°í½Í´Ù.
+	// ì• ë°©í–¥ìœ¼ë¡œ ê³„ì† ì´ë™í•˜ê³ ì‹¶ë‹¤.
 	// P = P0 + vt
 	FVector P0 = GetActorLocation();
 	FVector v = GetActorForwardVector() * speed;
@@ -58,37 +58,37 @@ void ABulletActor::Tick(float DeltaTime)
 
 void ABulletActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
-	//// ºÎµúÈù »ó´ë°¡ AEnemyActor¶ó¸é
+	//// ë¶€ë”ªíŒ ìƒëŒ€ê°€ AEnemyActorë¼ë©´
 	//if (OtherActor->IsA<AEnemyActor>())
 	//{
 	//	AEnemyActor* enemy = Cast<AEnemyActor>(OtherActor);
-	//	// ³ÊÁ×°í
+	//	// ë„ˆì£½ê³ 
 	//	enemy->Destroy();
-	//	// ³ªÁ×°í ÇÏ°í½Í´Ù.
+	//	// ë‚˜ì£½ê³  í•˜ê³ ì‹¶ë‹¤.
 	//	this->Destroy();
 	//}
 }
 
 void ABulletActor::Destroyed()
 {
-	// ÃÑ¾ËÀÌ ½ÇÁ¦·Î ÆÄ±«µÇ±â Á÷Àü¿¡ È£ÃâµÇ´Â ÇÔ¼ö.
+	// ì´ì•Œì´ ì‹¤ì œë¡œ íŒŒê´´ë˜ê¸° ì§ì „ì— í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜.
 }
 
 void ABulletActor::OnBoxCompBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// ºÎµúÈù »ó´ë°¡ AEnemyActor¶ó¸é
+	// ë¶€ë”ªíŒ ìƒëŒ€ê°€ AEnemyActorë¼ë©´
 	if (OtherActor->IsA<AEnemyActor>())
 	{
 		AEnemyActor* enemy = Cast<AEnemyActor>(OtherActor);
-		// ³ÊÁ×°í
+		// ë„ˆì£½ê³ 
 		enemy->Destroy();
-		// ³ªÁ×°í ÇÏ°í½Í´Ù.
+		// ë‚˜ì£½ê³  í•˜ê³ ì‹¶ë‹¤.
 		this->Destroy();
 
 		UGameplayStatics::PlaySound2D(GetWorld(), explosionSound);
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionVFX, enemy->GetActorTransform());
 
-		// ÃÑ¾ËÀÌ ÀûÀ» ÆÄ±«ÇÏ¸é AShootingCppGameModeBaseÀÇ AddScore(1);
+		// ì´ì•Œì´ ì ì„ íŒŒê´´í•˜ë©´ AShootingCppGameModeBaseì˜ AddScore(1);
 		AShootingCppGameModeBase* gmode = Cast<AShootingCppGameModeBase>(GetWorld()->GetAuthGameMode());
 		gmode->AddScore(1);
 	}

@@ -1,14 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-
-
 #include "PlayerPawn.generated.h"
 
-//class UBoxComponent; // Àü¹æ¼±¾ğ forward declaration
+//class UBoxComponent; // ì „ë°©ì„ ì–¸ forward declaration
 
 UCLASS()
 class SHOOTINGGAMECPP_API APlayerPawn : public APawn
@@ -35,7 +33,7 @@ public:
 	UStaticMeshComponent* cube;
 
 	UPROPERTY(EditAnywhere)
-	class UBoxComponent* box; // Æ÷ÀÎÅÍ º¯¼ö ¼±¾ğ½Ã classÀÇ ÀÌ¹Ì´Â Àü¹æ¼±¾ğÀÌ´Ù. 
+	class UBoxComponent* box; // í¬ì¸í„° ë³€ìˆ˜ ì„ ì–¸ì‹œ classì˜ ì´ë¯¸ëŠ” ì „ë°©ì„ ì–¸ì´ë‹¤. 
 
 	UPROPERTY(EditAnywhere)
 	class UArrowComponent* arrow;
@@ -53,9 +51,9 @@ public:
 	void AxisHorizontal(float value);
 	void AxisVertical(float value);
 
-	// ÀÚµ¿ ÃÑ½î±â ±â´ÉÀ» ¸¸µé°í½Í´Ù.
-	// - ±â´É : ´­·¶´Ù, ¶Â´Ù, ÃÑ¾ËÀ» ¸¸µç´Ù.
-	// - ¼Ó¼º : ´©¸¥»óÅÂ, ÇöÀç½Ã°£, ÃÑ¾ËÀÌ ¹ß»çµÇ´Â ½Ã°£(ÀÎÅÍ¹ú)
+	// ìë™ ì´ì˜ê¸° ê¸°ëŠ¥ì„ ë§Œë“¤ê³ ì‹¶ë‹¤.
+	// - ê¸°ëŠ¥ : ëˆŒë €ë‹¤, ë—ë‹¤, ì´ì•Œì„ ë§Œë“ ë‹¤.
+	// - ì†ì„± : ëˆ„ë¥¸ìƒíƒœ, í˜„ì¬ì‹œê°„, ì´ì•Œì´ ë°œì‚¬ë˜ëŠ” ì‹œê°„(ì¸í„°ë²Œ)
 	bool bAutoFire;
 	float currentTime;
 	float makeTime = 0.5f;
@@ -64,11 +62,11 @@ public:
 
 	void MakeBullet();
 
-	// ÇÃ·¹ÀÌ¾îÀÇ Ã¼·Â UI¸¦ ¸¸µé¾î¼­ ºÙÀÌ°í ½Í´Ù.
-	// À§Á¬ ÄÄÆ÷³ÍÆ®
+	// í”Œë ˆì´ì–´ì˜ ì²´ë ¥ UIë¥¼ ë§Œë“¤ì–´ì„œ ë¶™ì´ê³  ì‹¶ë‹¤.
+	// ìœ„ì ¯ ì»´í¬ë„ŒíŠ¸
 	UPROPERTY(EditAnywhere)
 	class UWidgetComponent* hpComp;
-
+	
 	UPROPERTY()
 	class UPlayerHPWidget* playerHP;
 

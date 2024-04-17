@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "TailActor.h"
@@ -21,7 +21,7 @@ ATailActor::ATailActor()
 void ATailActor::BeginPlay()
 {
 	Super::BeginPlay();
-	// ¸¸¾à targetÀÌ nullptrÀÌ¶ó¸é target¿¡ ÇÃ·¹ÀÌ¾îÆùÀ» Ã£¾Æ¼­ ³Ö¾îÁÖ°í½Í´Ù.
+	// ë§Œì•½ targetì´ nullptrì´ë¼ë©´ targetì— í”Œë ˆì´ì–´í°ì„ ì°¾ì•„ì„œ ë„£ì–´ì£¼ê³ ì‹¶ë‹¤.
 
 	// UGameplayStatics::GetPlayerPawn
 	// UGameplayStatics::GetActorOfClass
@@ -37,10 +37,10 @@ void ATailActor::BeginPlay()
 void ATailActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	// target - me ·Î ¹æÇâÀ» ¸¸µé°í
+	// target - me ë¡œ ë°©í–¥ì„ ë§Œë“¤ê³ 
 	FVector dir = targetActor->GetActorLocation() - this->GetActorLocation();
 	dir.Normalize();
-	// ±× ¹æÇâÀ¸·Î ÀÌµ¿ÇÏ°í½Í´Ù.
+	// ê·¸ ë°©í–¥ìœ¼ë¡œ ì´ë™í•˜ê³ ì‹¶ë‹¤.
 	SetActorLocation(GetActorLocation() + dir * speed * DeltaTime);
 }
 

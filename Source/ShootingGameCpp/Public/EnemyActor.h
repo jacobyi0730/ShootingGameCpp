@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -46,11 +46,11 @@ public:
 	class UParticleSystem* explosionVFX;
 
 
-	// °ÔÀÓ¿À¹öUI°øÀå
+	// ê²Œìž„ì˜¤ë²„UIê³µìž¥
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UGameOverWidget> gameOverUIFactory;
 	
-	// °ÔÀÓ¿À¹öUI
+	// ê²Œìž„ì˜¤ë²„UI
 	UPROPERTY()
 	class UGameOverWidget* gameOverUI;
 };
