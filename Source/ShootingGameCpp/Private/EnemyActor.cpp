@@ -51,19 +51,25 @@ void AEnemyActor::BeginPlay()
 	// 만약 30%라면
 	if (randValue < 3)
 	{
-		//   플레이어 폰을 찾고싶다.
-		for (TActorIterator<APlayerPawn> it(GetWorld()); it; ++it)
-		{
-			APlayerPawn* target = *it;
-			if (target == nullptr)
-				continue;
+		//for (TActorIterator<APlayerPawn> it(GetWorld()); it; ++it)
+		//{
+		//	APlayerPawn* target = *it;
+		//	if (target == nullptr)
+		//		continue;
 
-			//   플레이폰은 향하는 방향을 구해서 기억하고싶다.
-			direction = target->GetActorLocation() - GetActorLocation();
-			//   그 방향의 크기를 1로 만들고싶다.
-			direction.Normalize();
-			break;
-		}
+		//	//   플레이폰은 향하는 방향을 구해서 기억하고싶다.
+		//	direction = target->GetActorLocation() - GetActorLocation();
+		//	//   그 방향의 크기를 1로 만들고싶다.
+		//	direction.Normalize();
+		//	break;
+		//}
+
+		//   플레이어를 찾고싶다.
+		AActor* target = UGameplayStatics::GetPlayerPawn( GetWorld() , 0 );
+		//   플레이어를 향하는 방향을 구해서 기억하고싶다.
+		direction = target->GetActorLocation() - GetActorLocation();
+		//   그 방향의 크기를 1로 만들고싶다.
+		direction.Normalize();
 	}
 	// 그렇지 않다면
 	else {
